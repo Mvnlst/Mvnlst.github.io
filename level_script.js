@@ -27,7 +27,7 @@ build();
 window.addEventListener('orientationchange', check_screen, true);
 
 function homepage(){
-    window.location.href = "title_page.html";
+    window.location.href = "index.html";
 }
 
 function check_screen() {
