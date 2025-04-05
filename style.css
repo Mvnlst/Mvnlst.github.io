@@ -1,0 +1,157 @@
+* {
+    --edge-correct-color: rgba(84, 255, 54, 0.822);
+    --edge-wrong-color: rgba(255, 92, 92, 0.822);
+    --background-color: rgb(94, 28, 28);
+    --lighter-background-color: rgb(255, 228, 76);
+    --tile-color: rgb(255, 170, 101);
+}
+
+html, body {
+    margin: 0px;
+    background-color: var(--background-color);
+    font-family: "Copperplate", fantasy;
+}
+
+p {
+    margin: 0px;
+    font-size: 0px;
+    transition: 0.3s;
+}
+
+.shrink-text{
+    animation: shrink 0.3s both;
+}
+
+@keyframes shrink{
+    from{font-size: 100%;}
+    to{font-size: 0px;}
+}
+
+.grow-text{
+    animation: grow 0.3s both;
+}
+
+.title{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    color: var(--tile-color);
+    user-select: none;
+}
+
+
+@keyframes grow{
+    from{font-size: 0px;}
+    to{font-size: 100%;}
+}
+
+.navbar {
+    height: 10vh;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+}
+
+.play-button{
+    aspect-ratio: 1/ 1;
+    background-color: blue;
+    border-radius: 0px 0px 20% 20%;
+}
+
+.clear-mode{
+    background-color: var(--edge-wrong-color);
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    user-select: none;
+}
+
+.wrapper {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+}
+
+.level-button{
+    height:60%;
+    background-color: var(--background-color);
+    aspect-ratio: 1 / 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0px;
+    transition: 0.3s;
+    border-radius: 10%;
+    overflow: hidden;
+}
+
+.cube{
+    background-color: var(--tile-color);
+    transition: 0.3s;
+}
+
+.level-button:hover{
+    gap: 5px;
+    height: 80%;
+}
+
+.level-button:hover .cube{
+    border-radius: 20%;
+
+}
+
+.grid {
+    display: grid;
+    background-color: transparent;
+}
+
+.height {
+    height: 100%;
+}
+
+.width {
+    width: 100%;
+}
+
+.tile {
+    transform: scale(0);
+    border: 1px solid black;
+    box-sizing: border-box;
+    height: 100%;
+    transition: transform 1s, border-radius 1s, background-color 0.5s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 130%;
+    user-select: none;
+}
+
+.game-tile {
+    background-color: var(--tile-color);
+    cursor: pointer;
+}
+
+.edge-tile {
+    background-color: var(--tile-color);
+}
+
+.edge-tile:hover p{
+    font-size: 100%;
+    transition:0.3s;
+}
+
+.corner-tile {
+    background-color: var(--tile-color);
+}

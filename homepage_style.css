@@ -1,0 +1,137 @@
+* {
+    --edge-correct-color: rgba(84, 255, 54, 0.822);
+    --edge-wrong-color: rgba(255, 92, 92, 0.822);
+    --background-color: rgb(94, 28, 28);
+    --lighter-background-color: rgb(255, 228, 76);
+    --tile-color: rgb(255, 170, 101);
+}
+
+html, body {
+    margin: 0px;
+    background-color: var(--background-color);
+    font-family: "Copperplate", fantasy;
+}
+
+p {
+    margin: 0px;
+    font-size: 0px;
+    transition: 0.3s;
+}
+
+.shrink-text{
+    animation: shrink 0.3s both;
+}
+
+@keyframes shrink{
+    from{font-size: 100%;}
+    to{font-size: 0px;}
+}
+
+.grow-text{
+    animation: grow 0.3s both;
+}
+
+.title{
+    display: inline-block;
+    color: var(--tile-color);
+    user-select: none;
+    font-size: min(15vw, 15vh);
+    width: auto;
+    overflow: hidden;
+    animation: show-title 2s both;
+}
+
+.items{
+    height:auto;
+    animation: scale-up 2s both;
+    overflow: hidden;
+    animation-delay: 2s;
+}
+
+@keyframes scale-up{
+    0% {height: 0%;}
+    100% {height: calc(min(5vw, 5vh)*3.6);}
+}
+
+.menu-item{
+    font-size: min(5vw, 5vh);
+    color: var(--tile-color);
+    transition: 0.3s;
+    user-select: none;
+    cursor:pointer;
+}
+
+.menu-item:hover{
+    padding-left:2%;
+}
+
+@keyframes show-title{
+    from{width:0px;}
+    to{width:calc(min(15vw, 15vh)*4.7);}
+}
+
+@keyframes grow{
+    from{font-size: 0px;}
+    to{font-size: 100%;}
+}
+
+.navbar {
+    height: 10vh;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.wrapper {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title-wrapper {
+    height: 100vh;
+    width: 80vw;
+    margin-left:10vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+}
+
+.level-button{
+    height:60%;
+    background-color: var(--background-color);
+    aspect-ratio: 1 / 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0px;
+    transition: 0.3s;
+    border-radius: 10%;
+    overflow: hidden;
+}
+
+.cube{
+    background-color: var(--tile-color);
+    transition: 0.3s;
+}
+
+.level-button:hover{
+    gap: 5px;
+    height: 80%;
+}
+
+.level-button:hover .cube{
+    border-radius: 20%;
+
+}
