@@ -231,7 +231,7 @@ function finish() {
     if(validity.indexOf(0) != -1) return;
     if(state.indexOf(0) == -1) {
         correct_animation(0);
-        setTimeout(redirect, 5000, "levels");
+        setTimeout(redirect, 6000, "what_is_rally");
     }
 }
 

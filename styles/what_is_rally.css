@@ -1,0 +1,43 @@
+* {
+    --edge-correct-color: rgba(84, 255, 54, 0.822);
+    --edge-wrong-color: rgba(255, 92, 92, 0.822);
+    --background-color: rgb(94, 28, 28);
+    --lighter-background-color: rgb(255, 228, 76);
+    --tile-color: rgb(255, 170, 101);
+}
+
+html, body {
+    margin: 0px;
+    background-color: var(--background-color);
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--tile-color)
+}
+
+.wrapper{
+    height:auto;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.title{
+    font-size : 16vw;
+    user-select: none;
+    cursor: pointer;
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.text-field {
+    font-size: 3vw;
+    text-align: center;
+    margin-bottom: 1%;
+    opacity: 0;
+    transition: 1s;
+
+}
+
+a {
+    color: var(--tile-color);
+}
