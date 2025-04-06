@@ -55,6 +55,9 @@ function build() {
     for(let amount = 0; amount < amountOfLevels; amount++){
         let level_tile = document.createElement("div");
         level_tile.classList.add("level-tile");
+        level_tile.onclick = () => {
+            window.location.href = `level${amount+1}.html`;
+        }
         grid.appendChild(level_tile);
     }
 }

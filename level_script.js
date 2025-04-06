@@ -38,7 +38,7 @@ function check_screen() {
         grid.classList.add("width");
         grid.classList.remove("height");
     }
-    grid.style.fontSize = `${grid.clientWidth / (width * 2)}px`;
+    grid.style.fontSize = `${grid.clientWidth / (width * 3)}px`;
     title.style.fontSize = `${grid.clientWidth / (width * 2)}px`;
 }
 
