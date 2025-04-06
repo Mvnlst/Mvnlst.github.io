@@ -49,7 +49,7 @@ function redirect(index){
             window.location.href="pages/levels.html";
             break;
         case 1:
-            window.location.href="pages/levels.html";
+            window.location.href="pages/how_to_play.html";
             break;
         case 2:
             window.location.href="pages/levels.html";

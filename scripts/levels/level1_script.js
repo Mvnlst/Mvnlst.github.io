@@ -226,27 +226,28 @@ function finish() {
     }
     if(state.indexOf(0) == -1) {
         correct_animation(0);
-        setTimeout(close_animation, 5000, 1)
-        setTimeout(redirect, 7000, "levels");
-
+        setTimeout(redirect, 5000, "levels");
     }
 }
 
 function correct_animation(index){
-    if(index == game_tiles.length) return;
+    if(index == game_tiles.length) {
+        close_animation(1)
+    };
     game_tiles[index].style.backgroundColor = 'var(--edge-correct-color)';
-    setTimeout(correct_animation, 1000/(index+1), index + 1);
+    game_tiles[index].style.transform = "scale(1.2)"
+    setTimeout(correct_animation, 100, index + 1);
 }
 
 function close_animation(speedup){
     for(let index = 0; index < tiles.length; index++){
-        setTimeout(shrink, Math.random()*(2000/speedup), tiles[index]);
+        setTimeout(shrink, Math.random()*(1000), tiles[index]);
     }
-
-    setTimeout(shrink, 3000/speedup, title);
-    setTimeout(shrink, 2500/speedup, container);
-    setTimeout(shrink, 2000/speedup, clear_button);
+    setTimeout(shrink, 1500, title);
+    setTimeout(shrink, 1300, container);
+    setTimeout(shrink, 1000, clear_button);
 }
+
 function shrink(tile) {
     tile.style.transform = "scale(0)";
 }

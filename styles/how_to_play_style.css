@@ -1,0 +1,68 @@
+* {
+    --edge-correct-color: rgba(84, 255, 54, 0.822);
+    --edge-wrong-color: rgba(255, 92, 92, 0.822);
+    --background-color: rgb(94, 28, 28);
+    --lighter-background-color: rgb(255, 228, 76);
+    --tile-color: rgb(255, 170, 101);
+}
+
+html, body {
+    margin: 0px;
+    background-color: var(--background-color);
+    font-family: 'Courier New', Courier, monospace;
+    overflow: hidden;
+    color: var(--tile-color)
+}
+
+.wrapper{
+    height:100vh;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.title{
+    font-size : 16vw;
+    user-select: none;
+    cursor: pointer;
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.text-field {
+    font-size: 3vw;
+    text-align: center;
+    margin-bottom: 1%;
+    opacity: 0;
+    transition: 1s;
+
+}
+.level-tile{
+    aspect-ratio: 1 / 1;
+    background-color: var(--tile-color);
+    height:16vw;
+    border-radius: 20%;
+    margin: 4vw;
+    color:black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10vw;
+    transform: scale(0);
+    transition: 1s;
+    user-select: none;
+    cursor: pointer;
+}
+
+.level-tile:hover {
+    transform: scale(1.1) !important;
+    transition: 0.3s;
+}
+
+.levels{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
