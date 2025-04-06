@@ -29,12 +29,12 @@ build();
 window.addEventListener('orientationchange', check_screen, true);
 
 function homepage(){
-    close_animation();
-    setTimeout(redirect, 3500, "index");
+    close_animation(2);
+    setTimeout(redirect, 3500, "../index");
 }
 
 function levels(){
-    close_animation();
+    close_animation(2);
     setTimeout(redirect, 3500, "levels");
 }
 
@@ -225,7 +225,7 @@ function finish() {
     }
     if(state.indexOf(0) == -1) {
         correct_animation(0);
-        setTimeout(close_animation, 5000)
+        setTimeout(close_animation, 5000, 1)
     }
 }
 
@@ -235,15 +235,14 @@ function correct_animation(index){
     setTimeout(correct_animation, 1000/(index+1), index + 1);
 }
 
-function close_animation(){
+function close_animation(speedup){
     for(let index = 0; index < tiles.length; index++){
-        setTimeout(shrink, Math.random()*2000, tiles[index]);
+        setTimeout(shrink, Math.random()*(2000/speedup), tiles[index]);
     }
 
-    setTimeout(shrink, 3200, title);
-    setTimeout(shrink, 2800, container);
-    setTimeout(shrink, 2500, clear_button);
-    setTimeout(redirect, 4000, "levels");
+    setTimeout(shrink, 3000/speedup, title);
+    setTimeout(shrink, 2500/speedup, container);
+    setTimeout(shrink, 2000/speedup, clear_button);
 }
 function shrink(tile) {
     tile.style.transform = "scale(0)";

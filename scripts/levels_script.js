@@ -21,21 +21,25 @@ function start(){
 }
 
 function grow(index){
+    if(index == level_tiles.length) return;
     if(index == level_tiles.lenght) return;
     level_tiles[index].style.transform = "scale(1)";
-    setTimeout(grow, 500, index + 1);
+    setTimeout(grow, 200, index + 1);
 }
 
 function homepage(){
-    window.location.href = "index.html";
+    window.location.href = "../index.html";
 }
 
 function removeTiles(index, current){
-    if(current == level_tiles.length){
+    if(current >= level_tiles.length){
         title.style.opacity = "0";
+        level_tiles[index].style.transition = "1.5s";
+        level_tiles[index].style.transform = "scale(1.5)";
         level_tiles[index].style.opacity = "0";
         level_tiles[index].style.cursor = "default";
-        setTimeout(redirect, 700, index + 1);
+        setTimeout(redirect, 1500, index + 1);
+        return;
     }
     if(index != current) {
         level_tiles[current].style.transform = "scale(0)";

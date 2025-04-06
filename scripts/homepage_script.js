@@ -12,18 +12,14 @@ function appear(index){
 
 function levels(){
     disappear(-1, 0);
-    // window.location.href="levels.html";
 }
 
 function how_to_play(){
     disappear(-1, 1);
-
-    // window.location.href="levels.html";
 }
 
 function what_is_rally(){
     disappear(-1, 2);
-    // window.location.href="levels.html";
 }
 
 function disappear(index, skip){
@@ -50,13 +46,13 @@ function disappear(index, skip){
 function redirect(index){
     switch (index) {
         case 0:
-            window.location.href="levels.html";
+            window.location.href="pages/levels.html";
             break;
         case 1:
-            window.location.href="levels.html";
+            window.location.href="pages/levels.html";
             break;
         case 2:
-            window.location.href="levels.html";
+            window.location.href="pages/levels.html";
             break;
         default:
             break;
