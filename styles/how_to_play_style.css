@@ -10,12 +10,11 @@ html, body {
     margin: 0px;
     background-color: var(--background-color);
     font-family: 'Courier New', Courier, monospace;
-    overflow: hidden;
     color: var(--tile-color)
 }
 
 .wrapper{
-    height:100vh;
+    height:auto;
     display:flex;
     align-items: center;
     flex-direction: column;

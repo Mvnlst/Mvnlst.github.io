@@ -160,6 +160,7 @@ p {
 
 .edge-tile {
     background-color: var(--tile-color);
+    
 }
 
 .edge-tile:hover p{
