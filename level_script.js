@@ -15,8 +15,8 @@ let height = 7;
 let edge_values = [1, 5, 3, 2, 2, 1, 3, 3, 1, 3, 2, 3, 2, 2, 3, 2, 1, 3, 2, 3];
 let visible = [];
 
-grid.style.gridTemplateColumns = `repeat(${width}, 1fr)`;
-grid.style.gridTemplateRows = `repeat(${height}, 1fr)`;
+grid.style.gridTemplateColumns = `repeat(${width}, minmax(0, 1fr))`;
+grid.style.gridTemplateRows = `repeat(${height}, minmax(0, 1fr))`;
 grid.style.aspectRatio = `${width} / ${height}`;
 
 
@@ -38,7 +38,7 @@ function check_screen() {
         grid.classList.add("width");
         grid.classList.remove("height");
     }
-    grid.style.fontSize = `${grid.clientWidth / (width * 3)}px`;
+    grid.style.fontSize = `${grid.clientWidth / (width * 2.5)}px`;
     title.style.fontSize = `${grid.clientWidth / (width * 2)}px`;
 }
 
