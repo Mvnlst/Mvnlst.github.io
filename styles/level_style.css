@@ -61,7 +61,7 @@ p {
 }
 
 .clear-mode{
-    background-color: var(--edge-wrong-color);
+    background-color: var(--tile-color);
     height: 100%;
     aspect-ratio: 1 / 1;
     display: flex;

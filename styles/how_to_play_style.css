@@ -21,7 +21,6 @@ html, body {
     justify-content: center;
     flex-wrap: wrap;
 }
-
 .title{
     font-size : 16vw;
     user-select: none;
@@ -38,30 +37,7 @@ html, body {
     transition: 1s;
 
 }
-.level-tile{
-    aspect-ratio: 1 / 1;
-    background-color: var(--tile-color);
-    height:16vw;
-    border-radius: 20%;
-    margin: 4vw;
-    color:black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 10vw;
-    transform: scale(0);
-    transition: 1s;
-    user-select: none;
-    cursor: pointer;
-}
 
-.level-tile:hover {
-    transform: scale(1.1) !important;
-    transition: 0.3s;
-}
-
-.levels{
-    width: 100vw;
-    display: flex;
-    justify-content: center;
+a {
+    color: var(--tile-color);
 }
