@@ -11,8 +11,8 @@ let state = [];
 let clear_mode = false;
 let show_amount = false;
 
-let width = 7;
-let height = 7;
+let width = 5;
+let height = 5;
 let edge_values = [1, 5, 3, 2, 2, 1, 3, 3, 1, 3, 2, 3, 2, 2, 3, 2, 1, 3, 2, 3];
 let visible = [];
 
