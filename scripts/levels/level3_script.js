@@ -161,8 +161,8 @@ function update_board(index){
     for (let start = row*(width - 2); start < (row+1)*(width - 2); start++) {
         row_indices.push(start);
     }
-    update_edge_visbility(5 + row * 2, row_indices)
-    update_edge_visbility(6 + row * 2, row_indices.slice().reverse());
+    update_edge_visbility(width - 2 + row * 2, row_indices)
+    update_edge_visbility(width - 1 + row * 2, row_indices.slice().reverse());
     let column_indices = [];
     for (let index = 0; index < (height - 2); index++) {
         column_indices.push(column + index * (height - 2));
@@ -226,6 +226,8 @@ function finish() {
     if(state.indexOf(0) == -1) {
         correct_animation(0);
         setTimeout(close_animation, 5000, 1)
+        setTimeout(redirect, 7000, "levels");
+
     }
 }
 
