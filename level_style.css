@@ -138,6 +138,8 @@ p {
     justify-content: center;
     font-size: 130%;
     user-select: none;
+    min-width: 0;
+    min-height: 0;
 }
 
 .game-tile {
