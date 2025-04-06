@@ -5,10 +5,10 @@ let title = document.getElementsByClassName("title")[0];
 let level_tiles = [];
 let tileIndex = 0;
 
-for(let index = 0; index < 4; index++){
+for(let index = 0; index < 5; index++){
     let tile = document.createElement("div");
     tile.classList.add("level-tile");
-    tile.innerHTML = `${index+1}`;
+    tile.innerHTML = `${index}`;
     tile.onclick = () => removeTiles(index, 0);
     levels.appendChild(tile);
     level_tiles.push(tile);
@@ -38,7 +38,7 @@ function removeTiles(index, current){
         level_tiles[index].style.transform = "scale(1.5)";
         level_tiles[index].style.opacity = "0";
         level_tiles[index].style.cursor = "default";
-        setTimeout(redirect, 1500, index + 1);
+        setTimeout(redirect, 1500, index);
         return;
     }
     if(index != current) {
