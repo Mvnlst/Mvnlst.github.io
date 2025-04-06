@@ -3,6 +3,7 @@ let wrapper = document.getElementsByClassName("wrapper")[0];
 let clear_button = document.getElementsByClassName("clear-mode")[0];
 let title = document.getElementsByClassName("title")[0];
 let navbar = document.getElementsByClassName("navbar")[0];
+let container = document.getElementsByClassName("container")[0];
 let game_tiles = [];
 let edge_tiles = [];
 let tiles = [];
@@ -19,7 +20,8 @@ grid.style.gridTemplateColumns = `repeat(${width}, minmax(0, 1fr))`;
 grid.style.gridTemplateRows = `repeat(${height}, minmax(0, 1fr))`;
 grid.style.aspectRatio = `${width} / ${height}`;
 
-
+container.style.transform = "scale(0)";
+title.style.opacity = "0";
 
 check_screen()
 window.onresize=check_screen
@@ -27,7 +29,17 @@ build();
 window.addEventListener('orientationchange', check_screen, true);
 
 function homepage(){
-    window.location.href = "index.html";
+    close_animation();
+    setTimeout(redirect, 3500, "index");
+}
+
+function levels(){
+    close_animation();
+    setTimeout(redirect, 3500, "levels");
+}
+
+function redirect(string){
+    location.href = `../${string}.html`;
 }
 
 function check_screen() {
@@ -42,8 +54,14 @@ function check_screen() {
     title.style.fontSize = `${grid.clientWidth / (width * 2)}px`;
 }
 
+function opacitier(){
+    title.style.opacity = "1";
+}
 
 function build() {
+    setTimeout(grow, 1000, container);
+    setTimeout(opacitier, 500);
+    setTimeout(grow, 1500, clear_button);
     let corner = 0;
     let edge_index = 0;
     for (let y = 0; y < height; y++) {
@@ -206,14 +224,26 @@ function finish() {
         if(edge_values[index] != visible[index]) return;
     }
     if(state.indexOf(0) == -1) {
-        close_animation();
+        correct_animation(0);
+        setTimeout(close_animation, 5000)
     }
+}
+
+function correct_animation(index){
+    if(index == game_tiles.length) return;
+    game_tiles[index].style.backgroundColor = 'var(--edge-correct-color)';
+    setTimeout(correct_animation, 1000/(index+1), index + 1);
 }
 
 function close_animation(){
     for(let index = 0; index < tiles.length; index++){
         setTimeout(shrink, Math.random()*2000, tiles[index]);
     }
+
+    setTimeout(shrink, 3200, title);
+    setTimeout(shrink, 2800, container);
+    setTimeout(shrink, 2500, clear_button);
+    setTimeout(redirect, 4000, "levels");
 }
 function shrink(tile) {
     tile.style.transform = "scale(0)";
