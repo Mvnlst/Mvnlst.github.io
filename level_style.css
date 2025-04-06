@@ -115,6 +115,8 @@ p {
 .grid {
     display: grid;
     background-color: transparent;
+    min-width: 0;
+    min-height: 0;
 }
 
 .height {
