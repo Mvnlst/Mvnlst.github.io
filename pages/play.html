@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,12 +29,32 @@
                 <img src = "../../images/eraser.png" style="object-fit: contain; height:100%">
             </div>
         </div>
+        
 
     </div>
+    
     <div class="wrapper">
         <div class="grid"></div>
     </div>
 
-    <script src="../../scripts/levels/level4_script.js"></script>
+    
+    <script src="../scripts/level_design_script.js"></script>
+    <script>
+        let width = 0;
+        let height = 0;
+        let edge_values = 0;
+        const level = Number((new URLSearchParams(document.location.search)).get('level'));
+
+        // let script = document.createElement('script');
+        // // script.setAttribute('src', `../../scripts/levels/level${level}_script.js`);
+        // document.head.appendChild(script);
+
+        statement_that_is_switch(level);
+        
+        // script = document.createElement('script');
+        // script.setAttribute('src', `../../scripts/level_handler.js`);
+        // document.head.appendChild(script);
+    </script>
+    <script src="../scripts/level_handler.js"></script>
 </body>
 </html>

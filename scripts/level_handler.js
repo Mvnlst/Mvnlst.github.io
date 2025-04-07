@@ -10,10 +10,7 @@ let tiles = [];
 let state = [];
 let clear_mode = false;
 let show_amount = false;
-
-let width = 7;
-let height = 7;
-let edge_values = [1, 5, 3, 2, 2, 1, 3, 3, 1, 3, 2, 3, 2, 2, 3, 2, 1, 3, 2, 3];
+let validity = [];
 let visible = [];
 
 grid.style.gridTemplateColumns = `repeat(${width}, minmax(0, 1fr))`;
@@ -39,7 +36,7 @@ function levels(){
 }
 
 function redirect(string){
-    location.href = `../${string}.html`;
+    location.href = `${string}.html`;
 }
 
 function check_screen() {
@@ -75,6 +72,7 @@ function build() {
             else if(x % (width-1) == 0 || y % (height-1) == 0) {
                 tile.classList.add("edge-tile");
                 visible.push(0);
+                validity.push(0);
                 tile.innerHTML = `<p>${visible[edge_index]}/</p>${edge_values[edge_index]}`;
                 edge_index++;
                 edge_tiles.push(tile);
@@ -196,11 +194,14 @@ function update_edge_visbility(edge_index, arr){
     edge_tile.onmouseleave = () => hideTiles(visible_game_tiles, edge_index);
     if(invalid){
         edge_tile.style.backgroundColor = 'var(--edge-wrong-color)';
+        validity[edge_index] = 0;
     }
     else if(visible_amount == edge_values[edge_index]){
         edge_tile.style.backgroundColor = 'var(--edge-correct-color)';
+        validity[edge_index] = 1;
     } else {
         edge_tile.style.backgroundColor= 'var(--tile-color)'
+        validity[edge_index] = 0;
     }
     visible[edge_index] = visible_amount;
     edge_tile.innerHTML = `<p>${visible[edge_index]}/</p>${edge_values[edge_index]}`;
@@ -223,9 +224,10 @@ function finish() {
     for (let index = 0; index < edge_values.length; index++) {
         if(edge_values[index] != visible[index]) return;
     }
+    if(validity.indexOf(0) != -1) return;
     if(state.indexOf(0) == -1) {
         correct_animation(0);
-        setTimeout(redirect, 5000, "levels");
+        setTimeout(redirect, 6000, "what_is_rally");
     }
 }
 
