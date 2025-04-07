@@ -24,7 +24,7 @@ function grow(index){
     if(index == level_tiles.length) return;
     if(index == level_tiles.lenght) return;
     level_tiles[index].style.transform = "scale(1)";
-    setTimeout(grow, 200, index + 1);
+    setTimeout(grow, 100, index + 1);
 }
 
 function homepage(){
@@ -34,7 +34,7 @@ function homepage(){
 function removeTiles(index, current){
     if(current >= level_tiles.length){
         title.style.opacity = "0";
-        level_tiles[index].style.transition = "1.5s";
+        level_tiles[index].style.transition = "0.5s";
         level_tiles[index].style.transform = "scale(1.5)";
         level_tiles[index].style.opacity = "0";
         level_tiles[index].style.cursor = "default";
@@ -43,7 +43,7 @@ function removeTiles(index, current){
     }
     if(index != current) {
         level_tiles[current].style.transform = "scale(0)";
-        setTimeout(removeTiles, 300, index, current+1);
+        setTimeout(removeTiles, 100, index, current+1);
     } else {
         setTimeout(removeTiles, 0, index, current+1);
     }

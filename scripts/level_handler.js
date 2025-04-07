@@ -12,6 +12,7 @@ let clear_mode = false;
 let show_amount = false;
 let validity = [];
 let visible = [];
+let currentLevel = -1;
 
 grid.style.gridTemplateColumns = `repeat(${width}, minmax(0, 1fr))`;
 grid.style.gridTemplateRows = `repeat(${height}, minmax(0, 1fr))`;
@@ -25,18 +26,27 @@ window.onresize=check_screen
 build();
 window.addEventListener('orientationchange', check_screen, true);
 
+function setLevel(someLevel){
+    currentLevel = someLevel;
+}
 function homepage(){
     close_animation(2);
-    setTimeout(redirect, 3500, "../index");
+    setTimeout(redirect, 2000, "../index");
 }
 
 function levels(){
     close_animation(2);
-    setTimeout(redirect, 3500, "levels");
+    setTimeout(redirect, 2000, "levels");
 }
 
 function redirect(string){
-    location.href = `${string}.html`;
+    if(currentLevel = "") currentLevel = 0;
+    if(string == "play") {
+        totalString = `${string}.html?level=${currentLevel + 1}`
+        location.href = totalString;
+    } else {
+        location.href = `${string}.html`;
+    }
 }
 
 function check_screen() {
@@ -67,7 +77,7 @@ function build() {
             tile.classList.add("tile");
             if(x % (width-1) == 0 && y % (height-1) == 0) {
                 tile.classList.add("corner-tile");
-                setTimeout(bend, 2000 + 1000, tile, corner++);
+                setTimeout(bend, 1500, tile, corner++);
             }
             else if(x % (width-1) == 0 || y % (height-1) == 0) {
                 tile.classList.add("edge-tile");
@@ -85,7 +95,7 @@ function build() {
                 game_tiles.push(tile);
                 state.push(0);
             }
-            setTimeout(grow, Math.random() * 2000, tile);
+            setTimeout(grow, Math.random() * 1000, tile);
             grid.appendChild(tile);
         }
     }
@@ -227,14 +237,19 @@ function finish() {
     if(validity.indexOf(0) != -1) return;
     if(state.indexOf(0) == -1) {
         correct_animation(0);
-        setTimeout(redirect, 6000, "what_is_rally");
+        if(currentLevel == 4){
+            setTimeout(redirect, 3000, "what_is_rally");
+        } else {
+            setTimeout(redirect, 3000, "play");
+        }
     }
 }
 
 function correct_animation(index){
-    if(index == game_tiles.length) {
+    if(index >= game_tiles.length) {
         close_animation(1)
-    };
+        return;
+    }
     game_tiles[index].style.backgroundColor = 'var(--edge-correct-color)';
     game_tiles[index].style.transform = "scale(1.2)"
     setTimeout(correct_animation, 100, index + 1);
@@ -244,9 +259,9 @@ function close_animation(speedup){
     for(let index = 0; index < tiles.length; index++){
         setTimeout(shrink, Math.random()*(1000), tiles[index]);
     }
-    setTimeout(shrink, 1500, title);
-    setTimeout(shrink, 1300, container);
-    setTimeout(shrink, 1000, clear_button);
+    setTimeout(shrink, 800, title);
+    setTimeout(shrink, 800, container);
+    setTimeout(shrink, 800, clear_button);
 }
 
 function shrink(tile) {

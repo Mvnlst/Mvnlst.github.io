@@ -44,17 +44,12 @@
         let height = 0;
         let edge_values = 0;
         const level = Number((new URLSearchParams(document.location.search)).get('level'));
-
-        // let script = document.createElement('script');
-        // // script.setAttribute('src', `../../scripts/levels/level${level}_script.js`);
-        // document.head.appendChild(script);
-
         statement_that_is_switch(level);
-        
-        // script = document.createElement('script');
-        // script.setAttribute('src', `../../scripts/level_handler.js`);
-        // document.head.appendChild(script);
     </script>
-    <script src="../scripts/level_handler.js"></script>
+    <script src="../scripts/level_handler.js">
+    </script>
+    <script>
+        setLevel(level)
+    </script>
 </body>
 </html>
