@@ -160,12 +160,11 @@ p {
 
 .edge-tile {
     background-color: var(--tile-color);
-    
+    cursor:pointer;
 }
 
 .edge-tile:hover p{
     font-size: 100%;
-    transition:0.3s;
 }
 
 .corner-tile {

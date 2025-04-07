@@ -13,6 +13,9 @@ let show_amount = false;
 let validity = [];
 let visible = [];
 let currentLevel = -1;
+let lock = false;
+let current_focus_edge_tile = -1;
+let current_focus_game_tiles = [];
 
 grid.style.gridTemplateColumns = `repeat(${width}, minmax(0, 1fr))`;
 grid.style.gridTemplateRows = `repeat(${height}, minmax(0, 1fr))`;
@@ -20,7 +23,6 @@ grid.style.aspectRatio = `${width} / ${height}`;
 
 container.style.transform = "scale(0)";
 title.style.opacity = "0";
-
 check_screen()
 window.onresize=check_screen
 build();
@@ -40,7 +42,7 @@ function levels(){
 }
 
 function redirect(string){
-    if(currentLevel = "") currentLevel = 0;
+    if(currentLevel == "") currentLevel = 0;
     if(string == "play") {
         totalString = `${string}.html?level=${currentLevel + 1}`
         location.href = totalString;
@@ -77,12 +79,14 @@ function build() {
             tile.classList.add("tile");
             if(x % (width-1) == 0 && y % (height-1) == 0) {
                 tile.classList.add("corner-tile");
+                tile.onclick = () => hideTiles(current_focus_game_tiles, current_focus_edge_tile);
                 setTimeout(bend, 1500, tile, corner++);
             }
             else if(x % (width-1) == 0 || y % (height-1) == 0) {
                 tile.classList.add("edge-tile");
                 visible.push(0);
                 validity.push(0);
+                tile.onclick = () => hideTiles(current_focus_game_tiles, current_focus_edge_tile);
                 tile.innerHTML = `<p>${visible[edge_index]}/</p>${edge_values[edge_index]}`;
                 edge_index++;
                 edge_tiles.push(tile);
@@ -90,7 +94,10 @@ function build() {
             }else {
                 tile.classList.add("game-tile");
                 let index = game_tiles.length
-                tile.onclick = () => increment(index);
+                tile.onclick = () => {
+                    hideTiles(current_focus_game_tiles, current_focus_edge_tile);
+                    increment(index);
+                }
                 tile.innerHTML = "<p class='shrink-text'></p><p class='grow-text'></p>";
                 game_tiles.push(tile);
                 state.push(0);
@@ -136,6 +143,7 @@ function alter_clear_mode(){
     }
 }
 function increment(index) {
+    if(lock) return;
     let tile = game_tiles[index];
     let value = state[index];
     if(value == Math.max(width - 2, height - 2) || clear_mode) {
@@ -200,8 +208,10 @@ function update_edge_visbility(edge_index, arr){
         }
     }
     let edge_tile = edge_tiles[edge_index];
-    edge_tile.onmouseenter = () => showTiles(visible_game_tiles, edge_index);
-    edge_tile.onmouseleave = () => hideTiles(visible_game_tiles, edge_index);
+    //CODE IF YOU ARE ON COMPUTER WITH MOUSE
+    // edge_tile.onmouseenter = () => showTiles(visible_game_tiles, edge_index);
+    // edge_tile.onmouseleave = () => hideTiles(visible_game_tiles, edge_index);
+    edge_tile.onclick = () => showTiles(visible_game_tiles, edge_index);
     if(invalid){
         edge_tile.style.backgroundColor = 'var(--edge-wrong-color)';
         validity[edge_index] = 0;
@@ -219,12 +229,18 @@ function update_edge_visbility(edge_index, arr){
 }
 
 function showTiles(tiles, edge_index) {
+    hideTiles(current_focus_game_tiles, current_focus_edge_tile);
     tiles.forEach(index => {
         game_tiles[index].style.backgroundColor = "var(--lighter-background-color)";
     });
+    edge_tiles[edge_index].firstElementChild.style.fontSize = "100%";
+    current_focus_edge_tile = edge_index;
+    current_focus_game_tiles = tiles;
 }
 
 function hideTiles(tiles, edge_index) {
+    if(edge_index == -1) return;
+    edge_tiles[edge_index].firstElementChild.style.fontSize = "0%";
     tiles.forEach(index => {
         game_tiles[index].style.backgroundColor = "var(--tile-color)";
     });
@@ -236,6 +252,7 @@ function finish() {
     }
     if(validity.indexOf(0) != -1) return;
     if(state.indexOf(0) == -1) {
+        lock = true;
         correct_animation(0);
         if(currentLevel == 4){
             setTimeout(redirect, 3000, "what_is_rally");
