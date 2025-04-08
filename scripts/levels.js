@@ -66,17 +66,19 @@ function grow(index){
 }
 
 function homepage(){
-    window.location.href = "../index.html";
+    removeTiles(-1, 0);
 }
 
 function removeTiles(index, current){
     if(current >= level_tiles.length){
         title.style.opacity = "0";
         text_field.style.opacity = "0";
-        level_tiles[index].style.transition = "0.5s";
-        level_tiles[index].style.transform = "scale(1.5)";
-        level_tiles[index].style.opacity = "0";
-        level_tiles[index].style.cursor = "default";
+        if(index != -1){
+            level_tiles[index].style.transition = "0.5s";
+            level_tiles[index].style.transform = "scale(1.5)";
+            level_tiles[index].style.opacity = "0";
+            level_tiles[index].style.cursor = "default";
+        }
         setTimeout(redirect, 1500, index);
         return;
     }
@@ -90,5 +92,10 @@ function removeTiles(index, current){
 }
 
 function redirect(level){
-    location.href = `play.html?level=${level}`;
+    console.log(level)
+    if(level == -1) {
+        location.href = "../index.html";
+    } else {
+        location.href = `play.html?level=${level}`;
+    }
 }
