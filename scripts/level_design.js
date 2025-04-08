@@ -50,8 +50,11 @@ function statement_that_is_switch(level) {
             height = 8;
             edge_values = [3, 6, 2, 3, 1, 2, 3, 2, 6, 1, 2, 3, 1, 2, 3, 3, 2, 3, 2, 1, 3, 2, 6, 3];
             hints = [
+                [[12], [5], "Which 2 towers could go here? Why is one not an option?", [17, 24, 26, 29, 33]],
+                [[0, 24, 30], [2, 3, 4], "This column has 3 remaining numbers. Which one can go where in order to meet the edge requirements?", [1, 9, 17, 25, 33, 41, 49, 57]],
                 [[4, 11, 18, 31], [6, 6, 6, 6], "Start with the simple ones!", [5, 23, 32, 58]],
-                [[1, 6, 34], [1, 1, 1], "Place 6 towers in such a way you can see all 6.", [2, 16, 61]]
+                [[1, 6, 34], [1, 1, 1], "Place 6 towers in such a way you can see all 6.", [2, 16, 61]],
+                [[23], [5], "If the edge can only see 2, and it will see the 6 at the end, which tower must go here?", [33, 39]]
 
             ];
             break;    
@@ -60,7 +63,10 @@ function statement_that_is_switch(level) {
             height = 3;
             edge_values = [1, 1, 1, 3, 1, 1, 1, 1];
             hints = [
-
+                [[0], [1], "If this edge tile needs to see 3 towers, which tower can only be put here?", [5]],
+                [[2], [3], "If this edge tile needs to see 1 tower, which tower can only be put here?", [9]],
+                [[1], [2], "If this row can only contain each number once, what number is the only option left?", [6, 8]]
+                
             ];
             break;
     }
