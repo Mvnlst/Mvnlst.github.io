@@ -6,6 +6,7 @@ let level_tiles = [];
 let tileIndex = 0;
 let text_field = document.getElementsByClassName("text-field")[0];
 
+let level_progress = false;
 let completed_levels = [];
 let cookies = document.cookie;
 let split_up = cookies.split("; ");
@@ -22,6 +23,7 @@ for(let index = 0; index < 5; index++){
     tile.classList.add("level-tile");
     tile.innerHTML = `${index}`;
     if(completed_levels.indexOf(index) != -1){
+        level_progress = true;
         tile.style.backgroundColor = "var(--edge-correct-color)";
     }
     tile.onclick = () => removeTiles(index, 0);
@@ -52,6 +54,7 @@ function start(){
 }
 
 function text_field_reveal(){
+    if(level_progress)
     text_field.style.opacity = "1";
 }
 
@@ -69,6 +72,7 @@ function homepage(){
 function removeTiles(index, current){
     if(current >= level_tiles.length){
         title.style.opacity = "0";
+        text_field.style.opacity = "0";
         level_tiles[index].style.transition = "0.5s";
         level_tiles[index].style.transform = "scale(1.5)";
         level_tiles[index].style.opacity = "0";
