@@ -63,8 +63,12 @@ function ask_question(){
         setTimeout(opacitySetter, 400);
         question.firstElementChild.innerHTML = "x";
         lock = true;
-        if(index != -1)
+        if(index != -1){
             putInFocus(hints[index][0], hints[index][3]);
+        }
+        else{
+            putInFocus(-1 , []);
+        }
     } else {
         text_field.style.opacity = "0";
         setTimeout(fontSizeSetter, 500);
@@ -75,6 +79,12 @@ function ask_question(){
 }
 
 function putInFocus(game_tile_index, other_tile_indices){
+    if(game_tile_index == -1) {
+        for(let i = 0; i < tiles.length; i++){
+            tiles[i].style.backgroundColor = 'var(--tile-color-out-focus)';
+        }
+        return;
+    }
     for(let i = 0; i < tiles.length; i++){
         if(other_tile_indices.indexOf(i) == -1){
             tiles[i].style.backgroundColor = 'var(--tile-color-out-focus)';
@@ -297,6 +307,7 @@ function showTiles(tiles, edge_index) {
 }
 
 function showTileInfo(edge_index){
+    if(!lock)
     edge_tiles[edge_index].firstElementChild.style.fontSize = "100%";
 }
 
