@@ -9,7 +9,7 @@ let text_field = document.getElementsByClassName("text-field")[0];
 let completed_levels = [];
 let cookies = document.cookie;
 let split_up = cookies.split("; ");
-for(let i = 1; i < split_up.length; i++){
+for(let i = 0; i < split_up.length; i++){
     let strings = split_up[i].split("=");
     let completedLevel = Number(strings[0].charAt(strings[0].length - 1));
     if(Number(strings[1]) == 1){
