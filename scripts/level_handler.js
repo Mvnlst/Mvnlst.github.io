@@ -1,14 +1,13 @@
 let grid = document.getElementsByClassName("grid")[0];
 let wrapper = document.getElementsByClassName("wrapper")[0];
-let clear_button = document.getElementsByClassName("clear-mode")[0];
 let title = document.getElementsByClassName("title")[0];
 let navbar = document.getElementsByClassName("navbar")[0];
 let container = document.getElementsByClassName("container")[0];
+let question = document.getElementsByClassName("container")[1];
 let game_tiles = [];
 let edge_tiles = [];
 let tiles = [];
 let state = [];
-let clear_mode = false;
 let show_amount = false;
 let validity = [];
 let visible = [];
@@ -22,7 +21,7 @@ grid.style.gridTemplateRows = `repeat(${height}, minmax(0, 1fr))`;
 grid.style.aspectRatio = `${width} / ${height}`;
 
 container.style.transform = "scale(0)";
-title.style.opacity = "0";
+question.style.transform = "scale(0)";
 check_screen()
 window.onresize=check_screen
 build();
@@ -60,17 +59,19 @@ function check_screen() {
         grid.classList.remove("height");
     }
     grid.style.fontSize = `${grid.clientWidth / (width * 2.5)}px`;
-    title.style.fontSize = `${grid.clientWidth / (width * 2)}px`;
+    title.style.fontSize = `min(${document.body.clientHeight / (10)}px, ${grid.clientWidth / (10)}px`;
 }
 
-function opacitier(){
-    title.style.opacity = "1";
+function opacitier(something){
+    something.style.opacity = "1";
 }
 
 function build() {
+    setTimeout(opacitier, 1000, container);
     setTimeout(grow, 1000, container);
-    setTimeout(opacitier, 500);
-    setTimeout(grow, 1500, clear_button);
+    setTimeout(opacitier, 500, title);
+    setTimeout(opacitier, 1500, question);
+    setTimeout(grow, 1500, question);
     let corner = 0;
     let edge_index = 0;
     for (let y = 0; y < height; y++) {
@@ -86,7 +87,7 @@ function build() {
                 tile.classList.add("edge-tile");
                 visible.push(0);
                 validity.push(0);
-                tile.onclick = () => hideTiles(current_focus_game_tiles, current_focus_edge_tile);
+                addMouseStuff(tile, edge_index);
                 tile.innerHTML = `<p>${visible[edge_index]}/</p>${edge_values[edge_index]}`;
                 edge_index++;
                 edge_tiles.push(tile);
@@ -107,6 +108,12 @@ function build() {
         }
     }
     tiles = document.getElementsByClassName("tile");
+}
+
+function addMouseStuff(edgeTile, index){
+    edgeTile.onclick = () => hideTiles(current_focus_game_tiles, current_focus_edge_tile);
+    edgeTile.onmouseenter = () => showTileInfo(index);
+    edgeTile.onmouseleave = () => hideTileInfo(index);
 }
 
 function grow(tile) {
@@ -133,20 +140,11 @@ function bend(tile, corner) {
     }
 }
 
-function alter_clear_mode(){
-    clear_mode = !clear_mode;
-    if(clear_mode){
-        clear_button.style.backgroundColor = 'var(--edge-correct-color)';
-    } else {
-        clear_button.style.backgroundColor = 'var(--edge-wrong-color)';
-
-    }
-}
 function increment(index) {
     if(lock) return;
     let tile = game_tiles[index];
     let value = state[index];
-    if(value == Math.max(width - 2, height - 2) || clear_mode) {
+    if(value == Math.max(width - 2, height - 2)) {
         if(value != 0) {
             tile.innerHTML = `<p class='shrink-text'>${value}</p><p class='grow-text'></p>`;
         } else {
@@ -209,9 +207,9 @@ function update_edge_visbility(edge_index, arr){
     }
     let edge_tile = edge_tiles[edge_index];
     //CODE IF YOU ARE ON COMPUTER WITH MOUSE
-    // edge_tile.onmouseenter = () => showTiles(visible_game_tiles, edge_index);
-    // edge_tile.onmouseleave = () => hideTiles(visible_game_tiles, edge_index);
     edge_tile.onclick = () => showTiles(visible_game_tiles, edge_index);
+    edge_tile.onmouseenter = () => showTileInfo(edge_index);
+    edge_tile.onmouseleave = () => hideTileInfo(edge_index);
     if(invalid){
         edge_tile.style.backgroundColor = 'var(--edge-wrong-color)';
         validity[edge_index] = 0;
@@ -238,9 +236,19 @@ function showTiles(tiles, edge_index) {
     current_focus_game_tiles = tiles;
 }
 
+function showTileInfo(edge_index){
+    edge_tiles[edge_index].firstElementChild.style.fontSize = "100%";
+}
+
+function hideTileInfo(edge_index){
+    if(current_focus_edge_tile != edge_index)
+    edge_tiles[edge_index].firstElementChild.style.fontSize = "0%";
+}
+
 function hideTiles(tiles, edge_index) {
     if(edge_index == -1) return;
     edge_tiles[edge_index].firstElementChild.style.fontSize = "0%";
+    edge_tiles[edge_index].classList.add("edge_tile:hover");
     tiles.forEach(index => {
         game_tiles[index].style.backgroundColor = "var(--tile-color)";
     });
@@ -278,7 +286,7 @@ function close_animation(speedup){
     }
     setTimeout(shrink, 800, title);
     setTimeout(shrink, 800, container);
-    setTimeout(shrink, 800, clear_button);
+    setTimeout(shrink, 800, question);
 }
 
 function shrink(tile) {

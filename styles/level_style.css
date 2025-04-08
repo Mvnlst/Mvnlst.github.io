@@ -39,6 +39,7 @@ p {
     user-select: none;
     cursor: pointer;
     transition: 1s;
+    opacity: 0;
 }
 
 
@@ -60,9 +61,8 @@ p {
     border-radius: 0px 0px 20% 20%;
 }
 
-.clear-mode{
+.question{
     background-color: var(--tile-color);
-    height: 100%;
     aspect-ratio: 1 / 1;
     display: flex;
     justify-content: center;
@@ -71,9 +71,14 @@ p {
     user-select: none;
     object-fit: fill;
     border-radius: 10%;
-    height: 60%;
+    height: min(8vh, 10vw);
     cursor: pointer;
-    transform: scale(0);
+    font-size: min(8vh, 10vw);
+    overflow:hidden;
+}
+
+.question:hover{
+    transform: scale(1.2);
 }
 
 .wrapper {
@@ -86,14 +91,14 @@ p {
 
 .container{
     display: flex;
-    justify-content: center;
     align-items: center;
-    aspect-ratio: 1 / 1;
     transition: 0.5s;
+    opacity: 0;
+    margin-left: 2%;
 }
 
 .level-button{
-    height:60%;
+    height:min(8vh, 10vw);
     background-color: var(--background-color);
     aspect-ratio: 1 / 1;
     display: grid;
@@ -161,10 +166,6 @@ p {
 .edge-tile {
     background-color: var(--tile-color);
     cursor:pointer;
-}
-
-.edge-tile:hover p{
-    font-size: 100%;
 }
 
 .corner-tile {
