@@ -262,7 +262,7 @@ function finish() {
     if(state.indexOf(0) == -1) {
         lock = true;
         correct_animation(0);
-        document.cookie = `level${currentLevel}=1; path=levels.html`;
+        document.cookie = `level${currentLevel}=1; path=levels.html; SameSite=Lax`;
         if(currentLevel == 4){
             setTimeout(redirect, 3000, "what_is_rally");
         } else {
