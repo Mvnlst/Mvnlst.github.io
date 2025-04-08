@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="container">
-            <div class="question" onclick="alter_clear_mode()">
+            <div class="question" onclick="ask_question()">
                 ?
             </div>
         </div>
@@ -34,6 +34,7 @@
     </div>
     
     <div class="wrapper">
+        <div class="text-field"></div>
         <div class="grid"></div>
     </div>
 
@@ -43,6 +44,7 @@
         let width = 0;
         let height = 0;
         let edge_values = 0;
+        let hints = []
         const level = Number((new URLSearchParams(document.location.search)).get('level'));
         statement_that_is_switch(level);
     </script>

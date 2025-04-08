@@ -4,6 +4,7 @@ let title = document.getElementsByClassName("title")[0];
 let navbar = document.getElementsByClassName("navbar")[0];
 let container = document.getElementsByClassName("container")[0];
 let question = document.getElementsByClassName("container")[1];
+let text_field = document.getElementsByClassName("text-field")[0];
 let game_tiles = [];
 let edge_tiles = [];
 let tiles = [];
@@ -15,17 +16,18 @@ let currentLevel = -1;
 let lock = false;
 let current_focus_edge_tile = -1;
 let current_focus_game_tiles = [];
+let hint_displayed = false;
 
 grid.style.gridTemplateColumns = `repeat(${width}, minmax(0, 1fr))`;
 grid.style.gridTemplateRows = `repeat(${height}, minmax(0, 1fr))`;
 grid.style.aspectRatio = `${width} / ${height}`;
-
 container.style.transform = "scale(0)";
 question.style.transform = "scale(0)";
 check_screen()
 window.onresize=check_screen
 build();
 window.addEventListener('orientationchange', check_screen, true);
+
 
 function setLevel(someLevel){
     currentLevel = someLevel;
@@ -48,6 +50,64 @@ function redirect(string){
     } else {
         location.href = `${string}.html`;
     }
+}
+
+function ask_question(){
+    hint_displayed = !hint_displayed;
+    if(hint_displayed){
+        let index = select_hint();
+        text_field.innerHTML = "there are no further hints for this puzzle.";
+        if(index != -1)
+            text_field.innerHTML = hints[index][2];
+        text_field.style.fontSize = "3vw";
+        setTimeout(opacitySetter, 400);
+        question.firstElementChild.innerHTML = "x";
+        lock = true;
+        if(index != -1)
+            putInFocus(hints[index][0], hints[index][3]);
+    } else {
+        text_field.style.opacity = "0";
+        setTimeout(fontSizeSetter, 500);
+        question.firstElementChild.innerHTML = "?";
+        putOutFocus();
+        lock = false;
+    }
+}
+
+function putInFocus(game_tile_index, other_tile_indices){
+    for(let i = 0; i < tiles.length; i++){
+        if(other_tile_indices.indexOf(i) == -1){
+            tiles[i].style.backgroundColor = 'var(--tile-color-out-focus)';
+        }
+    }
+    game_tiles[game_tile_index].style.backgroundColor = 'var(--tile-color-focus)';
+}
+
+function putOutFocus(){
+    for(let i = 0; i < tiles.length; i++){
+        tiles[i].style.backgroundColor = "var(--tile-color)";
+    }
+}
+
+
+
+
+
+function opacitySetter(){
+    text_field.style.opacity = "1";
+}
+
+function fontSizeSetter(){
+    text_field.style.fontSize = "0px";
+}
+
+function select_hint(){
+    for(let i = 0; i < hints.length; i++){
+        if(state[hints[i][0]] != hints[i][1]){
+            return i;
+        }
+    } 
+    return -1;
 }
 
 function check_screen() {
