@@ -78,8 +78,9 @@ function ask_question(){
     }
 }
 
-function putInFocus(game_tile_index, other_tile_indices){
-    if(game_tile_index == -1) {
+function putInFocus(game_tile_indices, other_tile_indices){
+    hideTiles(current_focus_game_tiles, current_focus_edge_tile);
+    if(game_tile_indices == -1) {
         for(let i = 0; i < tiles.length; i++){
             tiles[i].style.backgroundColor = 'var(--tile-color-out-focus)';
         }
@@ -90,12 +91,20 @@ function putInFocus(game_tile_index, other_tile_indices){
             tiles[i].style.backgroundColor = 'var(--tile-color-out-focus)';
         }
     }
-    game_tiles[game_tile_index].style.backgroundColor = 'var(--tile-color-focus)';
+    for(let i = 0; i < game_tile_indices.length; i++){
+        game_tiles[game_tile_indices[i]].style.backgroundColor = 'var(--tile-color-focus)';
+
+    }
 }
 
 function putOutFocus(){
     for(let i = 0; i < tiles.length; i++){
         tiles[i].style.backgroundColor = "var(--tile-color)";
+    }
+    for(let i = 0; i < edge_tiles.length; i++){
+        if(validity[i] == 1){
+            edge_tiles[i].style.backgroundColor = "var(--edge-correct-color)";
+        }
     }
 }
 
@@ -113,8 +122,12 @@ function fontSizeSetter(){
 
 function select_hint(){
     for(let i = 0; i < hints.length; i++){
-        if(state[hints[i][0]] != hints[i][1]){
-            return i;
+        let indices = hints[i][0];
+        let values = hints[i][1];
+        for(j = 0; j < indices.length; j++){
+            if(state[indices[j]] != values[j]){
+                return i;
+            }
         }
     } 
     return -1;
