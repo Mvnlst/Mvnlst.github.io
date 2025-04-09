@@ -150,6 +150,11 @@ function opacitier(something){
 }
 
 function build() {
+    for(let i = 0; i < (width - 2)*(height-2); i++){
+        state.push(0);
+    }
+    console.log(state.length)
+    updateState();
     setTimeout(opacitier, 1000, container);
     setTimeout(grow, 1000, container);
     setTimeout(opacitier, 500, title);
@@ -184,13 +189,27 @@ function build() {
                 }
                 tile.innerHTML = "<p class='shrink-text'></p><p class='grow-text'></p>";
                 game_tiles.push(tile);
-                state.push(0);
             }
             setTimeout(grow, Math.random() * 1000, tile);
             grid.appendChild(tile);
         }
     }
     tiles = document.getElementsByClassName("tile");
+}
+
+function updateState(){
+    // cookie stuff, need right naming to ensure compatability between levels
+    // let cookies = document.cookie;
+    // cookies = cookies.split("; ");
+    // for(let i = 0; i < cookies.length; i++){
+    //     let cookie = cookies[i].split("=");
+    //     let state_index = cookie[0].split("state");
+    //     if(state_index.length == 2){
+    //         console.log(state_index[1], cookie[1])
+    //         state[Number(state_index[1])] = Number(cookie[1]);
+    //     }
+    // }
+    // console.log(state);
 }
 
 function addMouseStuff(edgeTile, index){
@@ -246,6 +265,8 @@ function increment(index) {
 
     }
     state[index] = value;
+    // cookie stuff
+    // document.cookie = `state${index}=${value}`;
     update_board(index);
     finish();
 }
@@ -289,7 +310,6 @@ function update_edge_visbility(edge_index, arr){
         }
     }
     let edge_tile = edge_tiles[edge_index];
-    //CODE IF YOU ARE ON COMPUTER WITH MOUSE
     edge_tile.onclick = () => showTiles(visible_game_tiles, edge_index);
     edge_tile.onmouseenter = () => showTileInfo(edge_index);
     edge_tile.onmouseleave = () => hideTileInfo(edge_index);
@@ -348,9 +368,9 @@ function finish() {
         correct_animation(0);
         document.cookie = `level${currentLevel}=1; path/; SameSite=None; Secure;`;
         if(currentLevel == 4){
-            setTimeout(redirect, 3000, "what_is_rally");
+            setTimeout(redirect, (width - 2)*(height - 2)*100 + 2000, "what_is_rally");
         } else {
-            setTimeout(redirect, 3000, "play");
+            setTimeout(redirect, (width - 2)*(height - 2)*100 + 2000, "play");
         }
     }
 }
