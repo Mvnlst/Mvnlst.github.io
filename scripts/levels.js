@@ -18,7 +18,7 @@ for(let i = 0; i < split_up.length; i++){
     }
 }
 
-for(let index = 0; index < 5; index++){
+for(let index = 0; index < 6; index++){
     let tile = document.createElement("div");
     tile.classList.add("level-tile");
     tile.innerHTML = `${index}`;
@@ -92,7 +92,6 @@ function removeTiles(index, current){
 }
 
 function redirect(level){
-    console.log(level)
     if(level == -1) {
         location.href = "../index.html";
     } else {

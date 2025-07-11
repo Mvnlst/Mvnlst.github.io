@@ -153,7 +153,6 @@ function build() {
     for(let i = 0; i < (width - 2)*(height-2); i++){
         state.push(0);
     }
-    console.log(state.length)
     updateState();
     setTimeout(opacitier, 1000, container);
     setTimeout(grow, 1000, container);
@@ -182,13 +181,27 @@ function build() {
 
             }else {
                 tile.classList.add("game-tile");
-                let index = game_tiles.length
+                let subscript = document.createElement("div");
+                subscript.classList.add("subscript");
+                
+                let index = game_tiles.length;
+                let linked_indices = [index];
+                for(let i = 0; i < linked_squares.length; i++) {
+                    if(linked_squares[i].indexOf(index) != -1) {
+                        subscript.innerHTML = 'abcdefghijklmnopqrstuvw'[linked_squares.indexOf(linked_squares[i])];
+                        linked_indices = linked_squares[i];
+                        continue;
+                    }
+                }
                 tile.onclick = () => {
                     hideTiles(current_focus_game_tiles, current_focus_edge_tile);
-                    increment(index);
+                    for(each_index in linked_indices){
+                        increment(linked_indices[each_index]);
+                    }
                 }
                 tile.innerHTML = "<p class='shrink-text'></p><p class='grow-text'></p>";
                 game_tiles.push(tile);
+                tile.appendChild(subscript);
             }
             setTimeout(grow, Math.random() * 1000, tile);
             grid.appendChild(tile);
@@ -246,23 +259,23 @@ function increment(index) {
     if(lock) return;
     let tile = game_tiles[index];
     let value = state[index];
+    let subscript = tile.innerHTML.split('</p>')[2];
     if(value == Math.max(width - 2, height - 2)) {
         if(value != 0) {
-            tile.innerHTML = `<p class='shrink-text'>${value}</p><p class='grow-text'></p>`;
+            tile.innerHTML = `<p class='shrink-text'>${value}</p><p class='grow-text'></p>` + subscript;
         } else {
-            tile.innerHTML = `<p class='shrink-text'></p><p class='grow-text'></p>`;
+            tile.innerHTML = `<p class='shrink-text'></p><p class='grow-text'></p>` + subscript;
         }
         value = 0;
         state[index] = value;
     } else {
         value = value + 1;
         if(value == 1){
-            tile.innerHTML = `<p class='shrink-text'></p><p class='grow-text'>${value}</p>`;
+            tile.innerHTML = `<p class='shrink-text'></p><p class='grow-text'>${value}</p>` + subscript;
 
         } else {
-            tile.innerHTML = `<p class='shrink-text'>${value - 1}</p><p class='grow-text'>${value}</p>`;
+            tile.innerHTML = `<p class='shrink-text'>${value - 1}</p><p class='grow-text'>${value}</p>` + subscript;
         }
-
     }
     state[index] = value;
     // cookie stuff

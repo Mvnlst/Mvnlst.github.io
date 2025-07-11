@@ -184,3 +184,10 @@ p {
     opacity: 0;
 
 }
+
+.subscript {
+    position: absolute;
+    font-size: 40%;
+    top: -3px;
+    right: 2px;
+}

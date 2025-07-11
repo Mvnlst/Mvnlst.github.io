@@ -5,6 +5,7 @@ function statement_that_is_switch(level) {
             width = 5;
             height = 3;
             edge_values = [1, 1, 1, 3, 1, 1, 1, 1];
+            linked_squares = [];
             hints = [
                 [[0], [1], "If this edge tile needs to see 3 towers, which tower can only be put here?", [5]],
                 [[2], [3], "If this edge tile needs to see 1 tower, which tower can only be put here?", [9]],
@@ -15,6 +16,7 @@ function statement_that_is_switch(level) {
             width = 5;
             height = 5;
             edge_values = [1, 3, 2, 1, 2, 3, 1, 2, 2, 2, 1, 2];
+            linked_squares = [];
             hints = [
                 [[0], [3], "If these edge tiles need to see 1 tower, which tower can only be put here?", [1, 5]],
                 [[1], [1], "If this edge tile needs to see 3 towers, which tower can only be put here?", [2]],
@@ -25,6 +27,7 @@ function statement_that_is_switch(level) {
             width = 6;
             height = 6;
             edge_values = [1, 3, 2, 2, 1, 2, 3, 2, 2, 3, 3, 1, 3, 2, 2, 1];
+            linked_squares = [];
             hints = [
                 [[0], [4], "If you don't know what to put here, learn from the previous puzzles first!", [1, 6]],
                 [[15], [4], "If you don't know what to put here, learn from the previous puzzles first!", [29,34]],
@@ -38,6 +41,7 @@ function statement_that_is_switch(level) {
             width = 7;
             height = 7;
             edge_values = [1, 5, 3, 2, 2, 1, 3, 3, 1, 3, 2, 3, 2, 2, 3, 2, 1, 3, 2, 3];
+            linked_squares = [];
             hints = [
                 [[0, 9, 21], [5, 5, 5], "Start with the simple ones!", [1, 7, 20, 44]],
                 [[1, 6, 11, 16, 21], [1, 2, 3, 4, 5], "Place 5 towers in such a way you can see all 5.", [2]],
@@ -49,6 +53,7 @@ function statement_that_is_switch(level) {
             width = 8;
             height = 8;
             edge_values = [3, 6, 2, 3, 1, 2, 3, 2, 6, 1, 2, 3, 1, 2, 3, 3, 2, 3, 2, 1, 3, 2, 6, 3];
+            linked_squares = [];
             hints = [
                 [[4, 11, 18, 31], [6, 6, 6, 6], "Start with the simple ones!", [5, 23, 32, 58]],
                 [[1, 6, 34], [1, 1, 1], "Place 6 towers in such a way you can see all 6.", [2, 16, 61]],
@@ -58,6 +63,14 @@ function statement_that_is_switch(level) {
 
             ];
             break;    
+        case 5:
+            width = 9;
+            height = 9;
+            edge_values = [4, 4, 3, 2, 3, 2, 1, 7, 1, 3, 2, 2, 2, 2, 3, 1, 3, 3, 3, 2, 4, 3, 1,2, 4, 2, 2, 7];
+            linked_squares = [[0, 12]];
+            hints = [
+            ];
+            break; 
         default:
             width = 5;
             height = 3;
