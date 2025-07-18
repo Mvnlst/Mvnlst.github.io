@@ -67,7 +67,7 @@ function statement_that_is_switch(level) {
             width = 9;
             height = 9;
             edge_values = [4, 4, 3, 2, 3, 2, 1, 7, 1, 3, 2, 2, 2, 2, 3, 1, 3, 3, 3, 2, 4, 3, 1,2, 4, 2, 2, 7];
-            linked_squares = [[0, 12]];
+            linked_squares = [[0, 12], [23, 28], [1, 42], [35, 45], [22, 38]];
             hints = [
             ];
             break; 
@@ -75,6 +75,7 @@ function statement_that_is_switch(level) {
             width = 5;
             height = 3;
             edge_values = [1, 1, 1, 3, 1, 1, 1, 1];
+            linked_squares = [];
             hints = [
                 [[0], [1], "If this edge tile needs to see 3 towers, which tower can only be put here?", [5]],
                 [[2], [3], "If this edge tile needs to see 1 tower, which tower can only be put here?", [9]],

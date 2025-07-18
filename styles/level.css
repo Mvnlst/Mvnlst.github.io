@@ -6,6 +6,7 @@
     --tile-color-focus: rgb(44, 255, 192);
     --tile-color-out-focus: rgb(194, 146, 107);
     --tile-color: rgb(255, 170, 101);
+    --edge-color: rgb(255, 143, 52);
 }
 
 html, body {
@@ -167,12 +168,12 @@ p {
 }
 
 .edge-tile {
-    background-color: var(--tile-color);
+    background-color: var(--edge-color);
     cursor:pointer;
 }
 
 .corner-tile {
-    background-color: var(--tile-color);
+    background-color: var(--edge-color);
 }
 
 .text-field {

@@ -334,7 +334,7 @@ function update_edge_visbility(edge_index, arr){
         edge_tile.style.backgroundColor = 'var(--edge-correct-color)';
         validity[edge_index] = 1;
     } else {
-        edge_tile.style.backgroundColor= 'var(--tile-color)'
+        edge_tile.style.backgroundColor= 'var(--edge-color)'
         validity[edge_index] = 0;
     }
     visible[edge_index] = visible_amount;

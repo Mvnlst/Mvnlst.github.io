@@ -23,7 +23,7 @@ html, body {
 }
 
 .title{
-    font-size : 16vw;
+    font-size : min(16vw, 16vh);
     user-select: none;
     cursor: pointer;
     transition: 0.5s;
@@ -33,14 +33,14 @@ html, body {
 .level-tile{
     aspect-ratio: 1 / 1;
     background-color: var(--tile-color);
-    height:16vw;
+    height:min(16vw, 16vh);
     border-radius: 20%;
     margin: 2vw;
     color:black;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 10vw;
+    font-size: min(10vw, 10vh);
     transform: scale(0);
     transition: 0.5s;
     user-select: none;
