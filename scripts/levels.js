@@ -93,7 +93,7 @@ function removeTiles(index, current){
 
 function redirect(level){
     if(level == -1) {
-        location.href = "../index.html";
+        location.href = "homepage.html";
     } else {
         location.href = `play.html?level=${level}`;
     }

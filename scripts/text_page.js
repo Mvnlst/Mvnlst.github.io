@@ -21,6 +21,6 @@ function homepage(){
 }
 
 function redirect(){
-    window.location.href = "../index.html";
+    window.location.href = "homepage.html";
 
 }

@@ -34,7 +34,7 @@ function setLevel(someLevel){
 }
 function homepage(){
     close_animation(2);
-    setTimeout(redirect, 2000, "../index");
+    setTimeout(redirect, 2000, "homepage");
 }
 
 function levels(){

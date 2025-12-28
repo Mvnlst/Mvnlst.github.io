@@ -1,0 +1,54 @@
+body {
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(25, 25, 25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.wrapper {
+    width: 50vw;
+    height: 100vh;
+    background-color: rgb(25, 25, 25);
+}
+
+.sidebar {
+    width: max(15vw);
+    height: 100vh;
+    background-color: rgb(87, 4, 4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;   
+}
+
+.sidebar-item {
+    font-size: 0.4rem;
+    font-family: 'Lucida Console', Geneva, Tahoma, sans-serif;
+    text-align: end;
+    color:white;
+    padding-right: 1rem;
+    user-select: none;
+    transition: 0.2s;
+    border-right: 0px solid white;
+}
+
+.child {
+    font-size: 0.3rem;
+}
+
+.parent{
+    font-size: 0.4rem;
+}
+
+.select {
+    border-right: 2px solid white;
+}
+
+.sidebar-item:hover, .sidebar-child-item:hover {
+    border-right: 2px solid white;
+    cursor: pointer;
+}
