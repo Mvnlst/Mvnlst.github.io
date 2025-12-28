@@ -25,3 +25,18 @@ function type_pulse(counter, max, text, block) {
         setTimeout(type_pulse, 600, counter + 1, max, text, block);
     }
 }
+
+function redirect(string) {
+    window.location.href=string + ".html";
+}
+
+function appearProjects() {
+    let projects = document.getElementsByClassName("project");
+    for(let i = 0; i < projects.length; i++) {
+        setTimeout(setOpacity, (i + 2) * 200, projects[i], 1);
+    }
+}
+
+function setOpacity(block, value) {
+    block.style.opacity = value;
+}
