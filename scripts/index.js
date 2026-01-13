@@ -1,4 +1,5 @@
 let typewrites = document.getElementsByClassName("typewriter");
+let projects = [];
 
 function start_animation() {
     for (typewritten in typewrites) {
@@ -31,12 +32,35 @@ function redirect(string) {
 }
 
 function appearProjects() {
-    let projects = document.getElementsByClassName("project");
+    projects = document.getElementsByClassName("project");
     for(let i = 0; i < projects.length; i++) {
         setTimeout(setOpacity, (i + 2) * 200, projects[i], 1);
+        console.log(projects[i].offsetHeight);
+        // projects[i].style.height = projects[i].offsetHeight + 'px';
     }
 }
 
+function resize() {
+    for(let i = 0; i < projects.length; i++) {
+        console.log(projects[i].offsetHeight);
+        // projects[i].style.height = projects[i].offsetHeight + 'px';
+    }
+}
 function setOpacity(block, value) {
     block.style.opacity = value;
+}
+
+function zoom(index) {
+    for(let i = 0; i < projects.length; i++) {
+        projects[i].style.height = projects[i].offsetHeight + '0px';
+        if(i != index) {
+            projects[i].style.opacity = 0;
+            projects[i].style.height = '0px';
+            projects[i].style.cursor = 'default';
+        }
+    }
+    let projectList = document.getElementsByClassName("projects")[0];
+    projectList.style.padding = '0px';
+    projectList.style.gap = '0px';
+    projects[index].classList.remove('project');
 }
