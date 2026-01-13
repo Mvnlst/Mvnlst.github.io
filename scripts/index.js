@@ -1,5 +1,8 @@
 let typewrites = document.getElementsByClassName("typewriter");
 let projects = [];
+let projectList;
+let go_back_button;
+let current_zoom = -1;
 
 function start_animation() {
     for (typewritten in typewrites) {
@@ -32,35 +35,58 @@ function redirect(string) {
 }
 
 function appearProjects() {
-    projects = document.getElementsByClassName("project");
+    projects = document.getElementsByClassName("projectid");
+    go_back_button = document.getElementsByClassName("go-back")[0];
+    projectList = document.getElementsByClassName("projects")[0];
     for(let i = 0; i < projects.length; i++) {
         setTimeout(setOpacity, (i + 2) * 200, projects[i], 1);
-        console.log(projects[i].offsetHeight);
-        // projects[i].style.height = projects[i].offsetHeight + 'px';
     }
 }
 
-function resize() {
-    for(let i = 0; i < projects.length; i++) {
-        console.log(projects[i].offsetHeight);
-        // projects[i].style.height = projects[i].offsetHeight + 'px';
-    }
-}
 function setOpacity(block, value) {
     block.style.opacity = value;
 }
 
 function zoom(index) {
+    if(current_zoom != -1) return;
+    current_zoom = index;
     for(let i = 0; i < projects.length; i++) {
-        projects[i].style.height = projects[i].offsetHeight + '0px';
         if(i != index) {
+            projects[i].style.height = projects[i].offsetHeight + 'px';
+            projects[i].offsetHeight;
             projects[i].style.opacity = 0;
             projects[i].style.height = '0px';
             projects[i].style.cursor = 'default';
         }
     }
-    let projectList = document.getElementsByClassName("projects")[0];
+    
     projectList.style.padding = '0px';
     projectList.style.gap = '0px';
     projects[index].classList.remove('project');
+
+    setTimeout(showButton, 500);
+}
+
+function showButton() {
+    go_back_button.style.cursor = 'pointer';
+    go_back_button.style.opacity = 1;
+}
+
+function zoomOut() {
+    projects[current_zoom].classList.add('project');
+    for(let i = 0; i < projects.length; i++) {
+        if(i != current_zoom) {
+            projects[i].style.height = 'auto';
+            let correctHeight = projects[i].offsetHeight;
+            projects[i].style.height = '0px';
+            projects[i].style.height = correctHeight + 'px';
+            projects[i].style.opacity = 1;
+            projects[i].style.cursor = 'pointer';
+        }
+    }
+
+    projectList.style.padding = '3vw';
+    projectList.style.gap = '2vw';
+    
+    current_zoom = -1;
 }
