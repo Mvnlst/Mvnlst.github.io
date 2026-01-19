@@ -59,10 +59,10 @@ function zoom(index) {
             projects[i].style.cursor = 'default';
         }
     }
-    
-    projectList.style.padding = '0px';
     projectList.style.gap = '0px';
     projects[index].classList.remove('project');
+    projects[index].style.paddingLeft = '0px';
+    projects[index].style.paddingRight = '0px';
 
     setTimeout(showButton, 500);
 }
@@ -72,6 +72,11 @@ function showButton() {
     go_back_button.style.opacity = 1;
 }
 
+function hideButton() {
+    go_back_button.style.cursor = 'default';
+    go_back_button.style.opacity = 0;
+}
+
 function zoomOut() {
     projects[current_zoom].classList.add('project');
     for(let i = 0; i < projects.length; i++) {
@@ -79,14 +84,19 @@ function zoomOut() {
             projects[i].style.height = 'auto';
             let correctHeight = projects[i].offsetHeight;
             projects[i].style.height = '0px';
+            projects[i].offsetHeight;
             projects[i].style.height = correctHeight + 'px';
             projects[i].style.opacity = 1;
             projects[i].style.cursor = 'pointer';
+        } else {
+            projects[i].style.paddingLeft = '3vw';
+            projects[i].style.paddingRight = '3vw';
         }
     }
-
-    projectList.style.padding = '3vw';
     projectList.style.gap = '2vw';
     
     current_zoom = -1;
+
+    hideButton();
 }
+

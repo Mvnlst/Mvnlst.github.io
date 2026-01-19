@@ -36,7 +36,7 @@ body {
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
-    padding: 3vw;
+    /* padding: 3vw; */
     gap: 2vw;
     transition: 1s;
     -ms-overflow-style: none;
@@ -49,12 +49,19 @@ body {
 
 .project {
     opacity: 0;
-    transition: opacity 0.5s, transform 0.2s, height 1s;
+    
     cursor: pointer;
+    
 }
 
 .project:hover {
     transform: scale(1.05);
+}
+
+.projectid {
+    padding-left: 3vw;
+    padding-right: 3vw;
+    transition: opacity 0.5s, transform 0.2s, height 1s, padding 1s;
 }
 
 .content {
