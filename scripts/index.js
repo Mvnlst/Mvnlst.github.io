@@ -39,12 +39,13 @@ function appearProjects() {
     go_back_button = document.getElementsByClassName("go-back")[0];
     projectList = document.getElementsByClassName("projects")[0];
     for(let i = 0; i < projects.length; i++) {
-        setTimeout(setOpacity, (i + 2) * 200, projects[i], 1);
+        setTimeout(setOpacity, (i + 2) * 200, projects[i], 1, i);
     }
 }
 
-function setOpacity(block, value) {
+function setOpacity(block, value, zIndex) {
     block.style.opacity = value;
+    block.style.zIndex = zIndex;
 }
 
 function zoom(index) {
@@ -56,13 +57,15 @@ function zoom(index) {
             projects[i].offsetHeight;
             projects[i].style.opacity = 0;
             projects[i].style.height = '0px';
-            projects[i].style.cursor = 'default';
         }
+        projects[i].style.cursor = 'default';
     }
     projectList.style.gap = '0px';
     projects[index].classList.remove('project');
     projects[index].style.paddingLeft = '0px';
     projects[index].style.paddingRight = '0px';
+    projects[index].children[1].style.gap = '1vw';
+    projects[index].children[1].children[2].style.opacity = 1;
 
     setTimeout(showButton, 500);
 }
@@ -87,11 +90,13 @@ function zoomOut() {
             projects[i].offsetHeight;
             projects[i].style.height = correctHeight + 'px';
             projects[i].style.opacity = 1;
-            projects[i].style.cursor = 'pointer';
         } else {
             projects[i].style.paddingLeft = '3vw';
             projects[i].style.paddingRight = '3vw';
+            projects[i].children[1].children[2].style.opacity = 0;
+            projects[i].children[1].style.gap = '0px';
         }
+        projects[i].style.cursor = 'pointer';
     }
     projectList.style.gap = '2vw';
     

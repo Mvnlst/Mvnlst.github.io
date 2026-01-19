@@ -49,9 +49,7 @@ body {
 
 .project {
     opacity: 0;
-    
     cursor: pointer;
-    
 }
 
 .project:hover {
@@ -66,6 +64,10 @@ body {
 
 .content {
     padding:10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    transition: gap 1s;
 }
 
 .short-info {
@@ -73,14 +75,17 @@ body {
     font-size: 1vw;
 }
 
+.extended {
+    color: white;
+    font-size: 1vw;
+    transition: opacity 0.2s, height 1s;
+    opacity: 0;
+    height: 0px;
+}
+
 .coding-languages {
     color:grey;
     font-size: 1vw;
-}
-
-.info {
-    opacity: 0;
-    display: none;
 }
 
 .sidebar-item {
@@ -111,7 +116,7 @@ body {
 .go-back {
     color: white;
     font-size: 50px;
-    z-index: 1;
+    z-index: 1000;
     position: absolute;
     transition: 0.3s;
     left: 41%;
