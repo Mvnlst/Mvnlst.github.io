@@ -62,6 +62,7 @@ function zoom(index) {
     }
     projectList.style.gap = '0px';
     projects[index].classList.remove('project');
+    projects[index].style.zIndex = 1000;
     projects[index].style.paddingLeft = '0px';
     projects[index].style.paddingRight = '0px';
     projects[index].children[1].style.gap = '1vw';
@@ -95,6 +96,7 @@ function zoomOut() {
             projects[i].style.paddingRight = '3vw';
             projects[i].children[1].children[2].style.opacity = 0;
             projects[i].children[1].style.gap = '0px';
+            projects[i].style.zIndex = i;
         }
         projects[i].style.cursor = 'pointer';
     }
