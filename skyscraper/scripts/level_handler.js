@@ -100,10 +100,16 @@ function putInFocus(game_tile_indices, other_tile_indices){
 function putOutFocus(){
     for(let i = 0; i < tiles.length; i++){
         tiles[i].style.backgroundColor = "var(--tile-color)";
+        if(i == 0 || i == width - 1 || i == width * height - width || i == width * height - 1) {
+            tiles[i].style.backgroundColor = "var(--edge-color)";
+        }
     }
     for(let i = 0; i < edge_tiles.length; i++){
         if(validity[i] == 1){
             edge_tiles[i].style.backgroundColor = "var(--edge-correct-color)";
+        }
+        else {
+            edge_tiles[i].style.backgroundColor = "var(--edge-color)";
         }
     }
 }
